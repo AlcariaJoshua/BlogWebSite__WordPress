@@ -172,6 +172,7 @@
     font-size: 1.4rem;
     color: var(--light);
     font-weight: bold;
+    color: red;
   }
   
   .card__sm {
@@ -190,12 +191,19 @@
     color: var(--light);
     opacity: 0.8;
     font-weight: bold;
+    color: red;
   }
   
   .card__sm img {
     width: 100px;
     height: 15rem;
     object-fit: cover;
+  }
+
+  .card__sm__content{
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
   }
   
   .latest {
@@ -234,6 +242,7 @@
   .card__md__content a {
     opacity: 0.8;
     font-weight: bold;
+    color: red;
   }
   
   .feature {
@@ -282,8 +291,8 @@
   }
   
   .feature__img img {
-    height: 35rem;
-    width: 100px;
+    height: 50rem;
+    width: 100%;
     object-fit: cover;
     isolation: isolate;
   }
@@ -308,6 +317,7 @@
     opacity: 0.8;
     font-weight: bold;
     font-size: 1.4rem;
+    color: red;
   }
   
   .card__mini {
@@ -323,6 +333,7 @@
     font-size: 1.4rem;
     opacity: 0.8;
     font-weight: bold;
+    color: red;
   }
   
   .footer {
@@ -549,3 +560,66 @@
   }
   
 
+/*
+  single page
+*/
+
+.thecontent{
+ background: whitesmoke;
+ padding: 5rem 0;
+}
+
+.main{
+}
+
+.main img{
+  width: 100%;
+  height: 50%;
+  object-fit: cover;
+
+}
+
+.main span{
+  color: red;
+}
+
+.thecontent .container{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 4rem;
+
+}
+
+.title h1 {
+    text-align: center;
+   
+    padding: 3rem;
+    padding-top: 0;
+}
+
+.content h2, .main h2{
+  padding-bottom: 1.5rem;
+}
+
+.wifes img{
+    width: 250px;
+    height: auto;
+    object-fit: cover;
+}
+
+.wifes .content{
+  display: flex;
+  gap: 2rem;
+}
+
+.content:nth-child(2){
+  padding: 2rem 0;
+}
+
+.content > .text{
+  text-align: justify;
+}
+ .content > .text > span{
+  color: red;
+  margin: 2rem 0;
+}

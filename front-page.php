@@ -16,71 +16,49 @@
           <div class="banner__grid">
             <div class="banner__main">
                <?php 
-
                     $args = array(
                       'post_type' => 'blogPost',
                       'posts_per_page' => 1,
                     );
-
                     $newQuery = new WP_Query($args)
-
                 ?>
-            <?php  
-            
-              if($newQuery->have_posts()) : while($newQuery->have_posts()) : $newQuery->the_post();
-            ?>
-
+            <?php if($newQuery->have_posts()) : while($newQuery->have_posts()) : $newQuery->the_post(); ?>
               <article class="banner__story">
-            
                 <?php echo get_the_post_thumbnail(); ?>
                 <div class="banner__story__content">
+                  <h2><?php the_title(); ?></h2>
                   <small><?php echo get_the_date('M-d-Y')  ?></small>
-                 <h2><?php echo get_field('title')   ?></h2>
-                  <p>
-                  <?php echo get_the_excerpt();   ?>
-                  </p>
-                  <a href="#">Read More...</a>
+                  <p><?php the_content();  ?></p>
+                  <a href="<?php echo the_permalink(); ?>">Read More...</a>
                 </div>
               </article>
                 <?php 
-
-            endwhile;
-                else:
+                  endwhile;
+                  else:
                   echo "no available content";
-                endif;
-                wp_reset_postdata();
-
-              ?>
+                  endif;
+                  wp_reset_postdata();
+                ?>
 
             </div>
 
             <div class="banner__sidebar">
-
-            <?php 
-
-              $args = array(
-                'post_type' => 'blogPost',
-                'posts_per_page' => 4,
-                'offset' => 1,
-              );
-
-              $newQuery = new WP_Query($args)
-
-            ?>
-            <?php  
-            
-              if($newQuery->have_posts()) : while($newQuery->have_posts()) : $newQuery->the_post();
-            ?>
-
+              <?php 
+                $args = array(
+                  'post_type' => 'blogPost',
+                  'posts_per_page' => 4,
+                  'offset' => 1,
+                );
+                $newQuery = new WP_Query($args)
+              ?>
+              <?php if($newQuery->have_posts()) : while($newQuery->have_posts()) : $newQuery->the_post(); ?>
               <div class="card__sm">
-               <?php
-                    echo get_the_post_thumbnail();
-
-               ?>
+               <?php echo get_the_post_thumbnail();?>
                 <div class="card__sm__content">
-                  <small><?php echo get_the_date('M-d-Y')  ?></small>
+                  <?php the_title(); ?>
+                  <small><?php echo get_the_date('M-d-Y') ?></small>
                   <h3>Lorem ipsum dolor sit amet consectetur.</h3>
-                  <a href="#">Read More...</a>
+                  <a href="<?php echo the_permalink(); ?>">Read More...</a>
                 </div>
               </div>
               <?php 
@@ -154,7 +132,7 @@
                   <p>
                   <?php echo get_the_excerpt();   ?>
                   </p>
-              <a href="#">Read More...</a>
+              <a href="<?php echo the_permalink(); ?>">Read More...</a>
             </div>
           </div>
           <?php 
@@ -187,12 +165,12 @@
       </div>
 
       <div class="container">
-        <div class="feature__img">
+        <div class="feature__img">  
         <?php
-            $image = get_field('feature_img');
+            $image = get_field('feature_image');
                 if(!empty($image)):
             ?>
-                <img src="<?php echo esc_url($image['url']) ?>" alt="">
+                <img src="<?php echo esc_url($image['url']) ?>"  alt="">
         <?php endif; ?>
         </div>
       </div>
@@ -224,18 +202,15 @@
 
                ?>
               <div class="card__lg__content">
-                <small>Oct 2, 2022</small>
+                <small><?php echo get_the_date('M-d-Y'); ?></small>
                 <h3>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Similique, eligendi?
+                 <?php the_title();?>
                 </h3>
                 <p>
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Alias in deserunt voluptatum ad laboriosam, aliquam quis fuga
-                  perspiciatis hic praesentium ea quae nemo aperiam aut sit
-                  recusandae ipsa? Repellendus, quos.
+                 <?php echo get_the_excerpt(); ?>
                 </p>
-                <a href="#">Read More...</a>
+                
+                <a href="<?php echo the_permalink(); ?>">Read More...</a>
               </div>
             </article>
                <?php 
@@ -250,58 +225,42 @@
             
           </div>
           <div class="feature__sidebar">
-            <div class="card__mini">
-              <small>Oct 21, 2022</small>
-              <h4>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia,
-                sit.
-              </h4>
-              <a href="#">Read More ...</a>
-            </div>
-            <div class="card__mini">
-              <small>Oct 21, 2022</small>
-              <h4>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia,
-                sit.
-              </h4>
-              <a href="#">Read More ...</a>
-            </div>
+              <?php 
+
+              $args = array(
+                'post_type' => 'featurePost',
+                'posts_per_page' => 6,
+                'offset' => 3,
+               
+              );
+
+              $newQuery = new WP_Query($args)
+
+            ?>
+            <?php  
+            
+              if($newQuery->have_posts()) : while($newQuery->have_posts()) : $newQuery->the_post();
+            ?>
 
             <div class="card__mini">
-              <small>Oct 21, 2022</small>
+              <small><?php echo get_the_date('M-d-Y') ?></small>
               <h4>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia,
-                sit.
+                <?php  the_title(); ?>
+             
               </h4>
-              <a href="#">Read More ...</a>
+              <p> <?php echo get_the_excerpt();   ?></p>
+              <a href="<?php echo the_permalink(); ?>">Read More ...</a>
             </div>
+                      <?php 
 
-            <div class="card__mini">
-              <small>Oct 21, 2022</small>
-              <h4>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia,
-                sit.
-              </h4>
-              <a href="#">Read More ...</a>
-            </div>
+            endwhile;
+                else:
+                  echo "no available content";
+                endif;
+                wp_reset_postdata();
 
-            <div class="card__mini">
-              <small>Oct 21, 2022</small>
-              <h4>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia,
-                sit.
-              </h4>
-              <a href="#">Read More ...</a>
-            </div>
-
-            <div class="card__mini">
-              <small>Oct 21, 2022</small>
-              <h4>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia,
-                sit.
-              </h4>
-              <a href="#">Read More ...</a>
-            </div>
+              ?>
+         
           </div>
         </div>
       </div>

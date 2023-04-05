@@ -68,6 +68,29 @@ function theblog_custom_post(){
     );
 
     register_post_type('featurePost' , $featurePost_args);
+
+    $daemonPost_label = array(
+        'name' => __('daemon Post', 'textdomain'),
+        'singular_name' => __('daemon Post', 'textdomain'),
+        'add_new' => __(' Add daemon Post', 'textdomain'),
+        'add_new_item' => __('Add daemon Post', 'textdomain'),
+        'edit_item' => __('daemon Post Post', 'textdomain'),
+        'all_items' => __('daemon Post', 'textdomain')
+
+    );
+
+
+
+    $daemonPost_args = array(
+        'labels'  => $daemonPost_label,
+        'public'  => true,
+        'capability_type' => 'post',
+        'show_ui' => true,
+        'taxonomies' => array('post_tag', 'category'),
+        'supports' => array('title', 'editor', 'thumbnail','excerpt')
+    );
+
+    register_post_type('daemonPost' , $daemonPost_args);
 }
 
 add_action('init','theblog_custom_post');
